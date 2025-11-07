@@ -17,3 +17,9 @@ resource "aws_instance" "mongodb" {
          ]
           }
 }
+
+output "name" {
+
+    value = local.ami_id
+  
+}
