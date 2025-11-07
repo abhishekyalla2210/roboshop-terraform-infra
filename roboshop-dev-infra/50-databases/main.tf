@@ -11,15 +11,24 @@ resource "aws_instance" "mongodb" {
         }
     )
 
-    provisioner "remote-exec" {
-        inline = [ 
-            "echo Hello",
-         ]
-          }
 }
 
-output "name" {
+resource "terraform_data" "mongodb" {
 
-    value  = var.ami_id
-  
+    triggers_replace = [
+        aws_instance.mongodb.id
+    ]
+     connection {
+        type        = "ssh"
+        user        = "ec2-user"
+        password  = DevOps321
+        host        = aws_instance.mongodb.private_ip
+  }
+
+    provisioner "remote-exec" { 
+    inline =   [
+        "echo Hello World"
+
+    ]    
+    }
 }

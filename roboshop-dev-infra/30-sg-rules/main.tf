@@ -24,8 +24,13 @@ resource "aws_instance" "bastion" {
     ami = var.ami_id
     subnet_id   = split("," , data.aws_ssm_parameter.public_subnet.value)[0]
     instance_type = "t3.micro"  
-    vpc_security_group_ids = [data.aws_ssm_parameter.bastion_sg_id.value]
-    
+    vpc_security_group_ids = [local.bastion_sg_id]
+
+    tags = {
+      Name = "${local.common_name_suffix}-bastion"
+    }
+
+
 }
 
 output "public_id" {
