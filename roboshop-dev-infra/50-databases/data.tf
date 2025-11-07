@@ -4,7 +4,7 @@ data "aws_caller_identity" "owner_id" {
 
 
 data "aws_ami_ids" "ami_id" {
-  owners = [data.aws_caller_identity.owner_id.account_id]
+  owners = [data.aws_caller_identity.owner_id.ami_id]
 
   filter {
     name   = "name"
