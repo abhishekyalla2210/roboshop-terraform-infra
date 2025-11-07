@@ -1,5 +1,5 @@
 resource "aws_instance" "mongodb" {
-    ami = local.ami_id[0]
+    ami = var.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = local.mongodb_sg_id
@@ -20,6 +20,6 @@ resource "aws_instance" "mongodb" {
 
 output "name" {
 
-    value  = local.ami_id
+    value  = var.ami_id
   
 }
