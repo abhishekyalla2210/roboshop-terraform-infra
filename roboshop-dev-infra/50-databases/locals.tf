@@ -12,4 +12,5 @@ locals {
     Environment = var.environment_name
     terraform = true
   }
+
 }
