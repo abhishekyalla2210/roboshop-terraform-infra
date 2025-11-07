@@ -6,10 +6,7 @@ data "aws_caller_identity" "owner_id" {
 data "aws_ami_ids" "ami_id" {
   owners = [data.aws_caller_identity.owner_id.id]
 
-  filter {
-    name   = "name"
-    values = ["RHEL-9-DevOps-Practice"]
-  }
+  
 }
 
 data "aws_ssm_parameter" "database_subnet_id" {
