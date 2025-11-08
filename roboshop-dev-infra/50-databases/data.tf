@@ -30,3 +30,9 @@ data "aws_ssm_parameter" "public_subnet_id" {
 data "aws_ssm_parameter" "redis_sg_id" {
   name = "/${local.common_name}/redis"
   }
+
+
+
+data "aws_ssm_parameter" "rabbitmq_sg_id" {
+  name = "/${local.common_name}/rabbitmq"
+  }
