@@ -16,6 +16,7 @@ resource "aws_security_group_rule" "bastion_laptop" {
   protocol          = "tcp"
   cidr_blocks =    ["0.0.0.0/0"]
 
+ 
   security_group_id = local.bastion_sg_id
 }
 
