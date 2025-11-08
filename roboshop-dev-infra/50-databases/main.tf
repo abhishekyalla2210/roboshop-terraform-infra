@@ -11,6 +11,7 @@ resource "aws_instance" "mongodb" {
         }
     )
 
+
 }
 
 resource "terraform_data" "mongodb" {
