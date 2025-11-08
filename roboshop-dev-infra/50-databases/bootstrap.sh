@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+sudo dnf install ansible -y
 component=$1
 REPO_URL=https://github.com/abhishekyalla2210/ansible-roboshop-roles-tf.git
 
@@ -20,4 +21,5 @@ else
     git clone $REPO_URL
     cd $ANSIBLE_DIR
 fi
+ 
     ansible-playbook -e component=$component main.yaml
