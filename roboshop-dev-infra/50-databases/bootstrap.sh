@@ -1,7 +1,4 @@
 #!/bin/bash
 
 dnf install ansible -y
-ansible-pull -U https://github.com/abhishekyalla2210/terraforms.git \
-             -d ~/roboshop-dev-infra 
-             -e component=mongodb 
-             main.yaml
+ansible-pull -U https://github.com/abhishekyalla2210/ansible-roboshop-roles-tf.git -e component=mongodb main.yaml
