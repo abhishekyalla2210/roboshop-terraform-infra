@@ -24,3 +24,11 @@ resource "aws_ssm_parameter" "database_subnet_ids" {
   type  = "StringList"
 value = join("," , module.vpc.database_subnet_ids)
 }    
+
+
+resource "aws_ssm_parameter" "mysql_root_password" {
+
+  name  = "/${local.common_name}/mysql_root_password"
+  type  = "String"
+  value = "Roboshop@1"
+}

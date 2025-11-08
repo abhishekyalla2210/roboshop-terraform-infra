@@ -151,6 +151,88 @@ resource "terraform_data" "rabbitmq" {
     }
 
     
+   
+resource "aws_instance" "mysql" {
+    ami = var.ami_id
+    subnet_id   = local.subnet_id
+    instance_type = var.instance_type
+    vpc_security_group_ids = local.mysql_sg_id
+    iam_instance_profile = aws_iam_instance_profile.mysql.name
+
+    
+    tags = merge(
+        local.common_tags,
+        {
+            Name = "${local.common_name}-rabbitmq"
+        }
+    )
+
+    
+    }
+
+    resource "aws_iam_instance_profile" "mysql" {
+        name = "mysql"
+         role = EC2SSMParameterStore
+    }
+
+
+
+
+resource "terraform_data" "mysql" {
+
+    triggers_replace = [
+        aws_instance.mysql.id
+    ]
+     connection {
+        type        = "ssh"
+        user        = "ec2-user"
+        password  = "DevOps321"
+        host        = aws_instance.mysql.private_ip
+  }
+
+      provisioner "file" {
+        source = "bootstrap.sh"
+        destination = "/tmp/bootstrap.sh"
+      }
+
+
+     provisioner "remote-exec" { 
+     inline =   [
+        "sudo chmod +x /tmp/bootstrap.sh",
+        "sudo sh /tmp/bootstrap.sh mysql"
+
+
+
+      ] 
+
+    }
+
+  
+
+      
+    }
+
+    
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    
+
+
+
+
+
 
 
 
