@@ -20,6 +20,11 @@ data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "/${local.common_name_suffix}/mongodb"
   }
 
+  data "aws_ssm_parameter" "redis_sg_id" {
+  name = "/${local.common_name_suffix}/redis"
+  }
+
+
 
 
 
