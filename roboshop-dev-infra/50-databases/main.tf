@@ -32,6 +32,7 @@ resource "terraform_data" "mongodb" {
         "sudo sh /tmp/bootstrap.sh"
 
 
+
     ]    
     }
 
