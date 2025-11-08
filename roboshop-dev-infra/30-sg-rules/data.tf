@@ -24,6 +24,11 @@ data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "/${local.common_name_suffix}/redis"
   }
 
+data "aws_ssm_parameter" "rabbitmq_sg_id" {
+  name = "/${local.common_name_suffix}/rabbitmq"
+  }
+
+
 
 
 
