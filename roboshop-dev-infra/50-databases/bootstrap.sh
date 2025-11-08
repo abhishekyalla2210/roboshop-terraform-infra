@@ -22,4 +22,4 @@ else
     cd $ANSIBLE_DIR
 fi
  
-ansible-playbook -e MYSQL_ROOT_PASSWORD='Roboshop@1' -e component={{component}}main.yaml
+ansible-playbook -e MYSQL_ROOT_PASSWORD='Roboshop@1' -e component=$component main.yaml
