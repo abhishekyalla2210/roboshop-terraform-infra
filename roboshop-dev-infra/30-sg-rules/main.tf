@@ -26,7 +26,9 @@ resource "aws_instance" "bastion" {
     subnet_id   = split("," , data.aws_ssm_parameter.public_subnet.value)[0]
     instance_type = "t3.micro"  
     vpc_security_group_ids = [local.bastion_sg_id]
-
+         
+    user_data = file("bastion.sh")
+        
     tags = {
       Name = "${local.common_name_suffix}-bastion"
     }
