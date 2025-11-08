@@ -28,6 +28,12 @@ data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "/${local.common_name_suffix}/rabbitmq"
   }
 
+ data "aws_ssm_parameter" "mysql_sg_id" {
+  name = "/${local.common_name_suffix}/mysql"
+  }
+
+
+
 
 
 
