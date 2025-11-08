@@ -41,8 +41,8 @@ output "public_id" {
 
 resource "aws_security_group_rule" "mongodb_bastion" {
   type              = "ingress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = 22
+  to_port           = 22
   protocol          = "tcp"
   source_security_group_id = local.bastion_sg_id
   security_group_id = local.mongodb_sg_id
