@@ -25,6 +25,8 @@ variable "route_names" {
     default = ["mongodb", "rabbitmq", "redis", "mysql"]
 }
 
+
+
 variable "domain" {
     type = string
     default = "abhishekdev.fun"

@@ -223,7 +223,7 @@ resource "aws_route53_record" "services" {
   name    = "${var.route_names[count.index]}.${var.domain}"  # use current item
   type    = "A"
   ttl     = 60
-  records = [aws_instance[var.route_names[count.index]].private_ip]
+  records = local.private_ip
   allow_overwrite = true  
 }
 
