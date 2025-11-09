@@ -20,6 +20,12 @@ locals {
 
 }
 
+
 locals {
-  instance_private_ips = { for name in var.route_names : name => aws_instance[name].private_ip }
+  instance_private_ips = {
+    mongodb  = aws_instance.mongodb.private_ip
+    rabbitmq = aws_instance.rabbitmq.private_ip
+    redis    = aws_instance.redis.private_ip
+    mysql    = aws_instance.mysql.private_ip
+  }
 }

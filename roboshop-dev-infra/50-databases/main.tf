@@ -222,8 +222,8 @@ resource "aws_route53_record" "services" {
 
   name    = "${each.key}-${var.environment_name}.${var.domain}"
   type    = "A"
-  ttl     = 300
-  records = [each.value]
+  ttl     = 1
+  records = aws
   allow_overwrite = true
 }
 
