@@ -26,7 +26,7 @@ resource "aws_instance" "bastion" {
     subnet_id   = split("," , data.aws_ssm_parameter.public_subnet.value)[0]
     instance_type = "t3.micro"  
     vpc_security_group_ids = [local.bastion_sg_id]
-         
+    iam_instance_profile = aws_iam_instance_profile.bastion.name     
     user_data = file("bastion.sh")
         
     tags = {
@@ -35,6 +35,12 @@ resource "aws_instance" "bastion" {
 
 
 }
+
+ resource "aws_iam_instance_profile" "bastion" {
+        name = "bastion"
+         role = "bastion-aws-access"
+    }
+
 
 output "public_id" {
 

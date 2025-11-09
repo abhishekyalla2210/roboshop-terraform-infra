@@ -5,3 +5,5 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 sudo yum -y install terraform
 
 echo "Welcome Abhishek"
+
+sudo dnf install ansible -y
