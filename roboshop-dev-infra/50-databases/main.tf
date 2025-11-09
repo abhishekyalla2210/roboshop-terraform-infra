@@ -213,6 +213,19 @@ resource "terraform_data" "mysql" {
       
     }
 
+
+    
+    resource "aws_route53_record" "zone_names" {
+        count = length(var.route_names)
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "${var.route_names[count.index]}-${var.environment_name}.${var.domain}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.var.route_names[count.index]].private_ip
+}
+
+    
+
     
 
 
