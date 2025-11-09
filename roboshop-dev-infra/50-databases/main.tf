@@ -217,17 +217,14 @@ resource "terraform_data" "mysql" {
     
 
 resource "aws_route53_record" "services" {
-  count   = length(var.route_names)  # loop over each service
+  for_each = local.instance_private_ips
 
-  zone_id = "Z01730921MDPIK694OSXC"
-  name    = "${var.route_names[count.index]}.${var.domain}"  # use current item
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "${each.key}-${var.environment_name}.${var.domain}"
   type    = "A"
-  ttl     = 60
-  records = local.private_ip
-  allow_overwrite = true  
+  ttl     = 1
+  records = [each.value]
 }
-
-    
 
 
 

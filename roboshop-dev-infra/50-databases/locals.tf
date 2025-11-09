@@ -7,7 +7,8 @@ locals {
   rabbitmq_sg_id = [data.aws_ssm_parameter.rabbitmq_sg_id.value]
   mysql_sg_id = [data.aws_ssm_parameter.mysql_sg_id.value]
   # private_ip = [aws_instance[var.[count.index]].private_ip]
-  private_ip = [for name in var.route_names : name => [aws_instance.[name].private_ip]]
+  # private_ip = [for name in var.route_names : name => [aws_instance.[name].private_ip]]
+
 }
 
 locals {
@@ -17,4 +18,8 @@ locals {
     terraform = true
   }
 
+}
+
+locals {
+  instance_private_ips = { for name in var.route_names : name => aws_instance[name].private_ip }
 }
