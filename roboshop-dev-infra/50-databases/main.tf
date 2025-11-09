@@ -130,6 +130,7 @@ resource "terraform_data" "rabbitmq" {
 
       provisioner "file" {
         source = "bootstrap.sh"
+       
         destination = "/tmp/bootstrap.sh"
       }
 
