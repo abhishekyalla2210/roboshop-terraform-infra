@@ -215,18 +215,17 @@ resource "terraform_data" "mysql" {
 
 
     
-
 resource "aws_route53_record" "services" {
   for_each = local.instance_private_ips
 
-  zone_id = aws_route53_zone.primary.zone_id
+  zone_id =Z01730921MDPIK694OSXC
+
   name    = "${each.key}-${var.environment_name}.${var.domain}"
   type    = "A"
-  ttl     = 1
+  ttl     = 300
   records = [each.value]
+  allow_overwrite = true
 }
-
-
 
 
 
