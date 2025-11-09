@@ -46,3 +46,17 @@ data "aws_ssm_parameter" "mysql_sg_id" {
 data "aws_ssm_parameter" "catalogue_sg_id" {
   name = "/${local.common_name}/catalogue"
   }
+
+ data "aws_instance" "catalogue" {
+  instance_id = "i-instanceid"
+
+  filter {
+    name   = "image-id"
+    values = ["ami-xxxxxxxx"]
+  }
+
+  filter {
+    name   = "tag:Name"
+    values = ["instance-name-tag"]
+  }
+}
