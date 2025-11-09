@@ -27,7 +27,7 @@ locals {
     rabbitmq = aws_instance.rabbitmq.private_ip
     redis    = aws_instance.redis.private_ip
     mysql    = aws_instance.mysql.private_ip
-    catalogue    = aws_instance.catalogue.private_ip
+  #   catalogue    = aws_instance.catalogue.private_ip
 
-  }
+   }
 }
