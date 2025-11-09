@@ -37,6 +37,10 @@ data "aws_availability_zones" "available" {
 }
 
 
+ data "aws_ssm_parameter" "catalogue_sg_id" {
+  name = "/${local.common_name_suffix}/catalogue"
+  }
+
 
 
 

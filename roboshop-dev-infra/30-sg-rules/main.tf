@@ -88,19 +88,44 @@ resource "aws_security_group_rule" "mysql_bastion" {
 }
 
 
-   
-resource "aws_ebs_volume" "root" {
-  availability_zone = data.aws_availability_zones.available.name
-  size              = 40        # New size in GB
-  type              = "gp3"     # Or gp2, io1, etc.
-  tags = {
-    Name = "RootVolume"
-  }
+resource "aws_security_group_rule" "catalogue_mongodb" {
+  type              = "ingress"
+  from_port         = 27017
+  to_port           = 27017
+  protocol          = "tcp"
+  source_security_group_id = local.catalogue_sg_id
+  security_group_id = local.mongodb_sg_id
 }
 
-resource "aws_volume_attachment" "root_attach" {
-  device_name = "/dev/nvme0n1"
-  volume_id   = aws_ebs_volume.root.id
-  instance_id = aws_instance.bastion.id
+
+
+
+resource "aws_security_group_rule" "catalogue_bastion" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = local.bastion_sg_id
+  security_group_id = local.catalogue_sg_id
 }
+
+
+
+
+
+   
+# resource "aws_ebs_volume" "root" {
+#   availability_zone = data.aws_availability_zones.available.names[0]
+#   size              = 40        # New size in GB
+#   type              = "gp3"     # Or gp2, io1, etc.
+#   tags = {
+#     Name = "RootVolume"
+#   }
+# }
+
+# resource "aws_volume_attachment" "root_attach" {
+#   device_name = "/dev/sdg"
+#   volume_id   = aws_ebs_volume.root.id
+#   instance_id = aws_instance.bastion.id
+# }
 
