@@ -32,6 +32,9 @@ data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "/${local.common_name_suffix}/mysql"
   }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 
 
