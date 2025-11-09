@@ -44,7 +44,7 @@ resource "aws_route53_record" "catalogue" {
 
   zone_id = "Z01730921MDPIK694OSXC"
 
-  name    = catalogue-dev.abhishekdev.fun
+  name    = "catalogue-${var.environment_name}.${var.domain}"
   type    = "A"
   ttl     = 1
   records = aws_instance.catalogue.private_ip
