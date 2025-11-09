@@ -47,7 +47,7 @@ resource "aws_route53_record" "catalogue" {
   name    = "catalogue-${var.environment_name}.${var.domain}"
   type    = "A"
   ttl     = 1
-  records = aws_instance.catalogue.private_ip
+  records = [aws_instance.catalogue.private_ip]
   allow_overwrite = true
 }
 
