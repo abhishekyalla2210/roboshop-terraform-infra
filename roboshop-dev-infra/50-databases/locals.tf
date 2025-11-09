@@ -6,7 +6,7 @@ locals {
   redis_sg_id = [data.aws_ssm_parameter.redis_sg_id.value]
   rabbitmq_sg_id = [data.aws_ssm_parameter.rabbitmq_sg_id.value]
   mysql_sg_id = [data.aws_ssm_parameter.mysql_sg_id.value]
-  private_ip = [aws_instance[var.[count.index]].private_ip]
+  # private_ip = [aws_instance[var.[count.index]].private_ip]
 
 }
 
