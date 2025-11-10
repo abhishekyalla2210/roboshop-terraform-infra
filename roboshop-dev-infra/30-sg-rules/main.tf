@@ -28,6 +28,14 @@ resource "aws_instance" "bastion" {
     vpc_security_group_ids = [local.bastion_sg_id]
     iam_instance_profile = aws_iam_instance_profile.bastion.name     
     user_data = file("bastion.sh")
+    root_block_device {
+        volume_size = 50 # New desired size in GB
+        volume_type = "gp3" # Optional: specify volume type
+        delete_on_termination = true
+      }
+      
+
+    
         
     tags = {
       Name = "${local.common_name_suffix}-bastion"

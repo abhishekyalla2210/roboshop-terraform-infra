@@ -68,7 +68,7 @@ resource "aws_ami_from_instance" "catalogue" {
 
 
 resource "aws_lb_target_group" "catalogue" {
-  name     = "${local.common_name_suffix}-catalogue"
+  name     = "${local.common_name}-catalogue"
   port     = 8080
   protocol = "HTTP"
   vpc_id   =  data.aws_ssm_parameter.vpc_id
@@ -86,36 +86,100 @@ resource "aws_lb_target_group" "catalogue" {
 }
 
 
-resource "aws_launch_template" "foo" {
-  name = "foo"
+resource "aws_launch_template" "catalogue" {
+  name = "${local.common_name}-dev-catalogue"
 
-
-  iam_instance_profile {
-    name = "test"
-  }
-
-  image_id = "ami-test"
 
   instance_initiated_shutdown_behavior = "terminate"
+  image_id = aws_lb_target_group.catalogue.id
+  instance_type = "t3.micro"
+  vpc_security_group_ids = local.catalogue_sg_id
+ tag_specifications {
+   resource_type = "instance"
+ }
 
-  instance_market_options {
-    market_type = "spot"
+ tags = merge(
+  local.common_tags,
+  {
+    Name = local.common_name
+  }
+ ) 
+  tag_specifications {
+   resource_type = "volume"
+  tags = merge(
+  local.common_tags,
+  {
+    Name = local.common_name
+  }
+ ) 
+  
+  }
+}
+
+resource "aws_placement_group" "test" {
+  name     = "test"
+  strategy = "cluster"
+}
+
+resource "aws_autoscaling_group" "catalogue" {
+  name = "${local.common_name}-dev-catalogue"
+  max_size                  = 10
+  min_size                  = 1
+  health_check_grace_period = 100
+  health_check_type         = "ELB"
+  desired_capacity          = 1
+  force_delete              = false
+  target_group_arns = aws_lb_target_group.catalogue.arn
+  launch_template {
+    id = aws_launch_template.catalogue.id
+    version = aws_launch_template.catalogue.lastest_version
+  }
+  vpc_zone_identifier       = local.private_subnet_id
+
+  
+ dynamic "tag"
+    for_each = merge(
+      local.common_tags
+      {
+        Name = "${local.common_name}-catalogue"
+      }
+    )
+
+  tag {
+    key                 = tag.key
+    value               = tag.value
+    propagate_at_launch = true
   }
 
-  instance_type = "t2.micro"
-
-  monitoring {
-    enabled = true
+  timeouts {
+    delete = "15m"
   }
 
   
+}
 
-  placement {
-    availability_zone = "us-west-2a"
+
+resource "aws_autoscaling_policy" "catalogue" {
+  autoscaling_group_name = aws_autoscaling_group.catalogue.name
+  name = "${local.common_name}-catalogue"
+  policy_type = "PredictiveScaling"
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 75.0
+    
   }
 
-  user_data = filebase64("${path.module}/example.sh")
+  
 }
+
+
+
+
+
+
 
 
 

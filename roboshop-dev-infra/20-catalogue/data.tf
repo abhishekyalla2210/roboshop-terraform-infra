@@ -5,7 +5,7 @@ data "aws_ssm_parameter" "catalogue_sg_id" {
   }
 
   
-data "aws_ssm_parameter" "private_subnet_id" {
+data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${local.common_name}/private_subnet_ids"
   }
 
