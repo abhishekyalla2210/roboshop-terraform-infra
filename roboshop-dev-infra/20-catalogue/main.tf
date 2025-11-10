@@ -137,13 +137,14 @@ resource "aws_autoscaling_group" "catalogue" {
   vpc_zone_identifier       = local.private_subnet_id
 
   
- dynamic "tag"
+  dynamic "tag" {
     for_each = merge(
-      local.common_tags
+      local.common_tags,
       {
         Name = "${local.common_name}-catalogue"
       }
     )
+  }
 
   tag {
     key                 = tag.key
@@ -151,10 +152,15 @@ resource "aws_autoscaling_group" "catalogue" {
     propagate_at_launch = true
   }
 
+  
+
+  
+
+
   timeouts {
     delete = "15m"
   }
-
+  
   
 }
 
