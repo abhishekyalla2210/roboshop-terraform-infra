@@ -144,12 +144,13 @@ resource "aws_autoscaling_group" "catalogue" {
         Name = "${local.common_name}-catalogue"
       }
     )
-  }
+  
 
-  tag {
+  content {
     key                 = tag.key
     value               = tag.value
     propagate_at_launch = true
+  }
   }
 
   

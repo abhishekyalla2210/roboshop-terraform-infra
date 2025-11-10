@@ -6,7 +6,7 @@ data "aws_ssm_parameter" "catalogue_sg_id" {
 
   
 data "aws_ssm_parameter" "private_subnet_ids" {
-  name = "/${local.common_name}/private_subnet_id"
+  name = "/${local.common_name}/private_subnet_ids"
   }
 
   data "aws_instance" "catalogue" {
@@ -14,3 +14,10 @@ data "aws_ssm_parameter" "private_subnet_ids" {
 
   
 }
+
+
+   
+data "aws_ssm_parameter" "vpc_id" {
+  name = "/${local.common_name}/vpc_id"
+  }
+
