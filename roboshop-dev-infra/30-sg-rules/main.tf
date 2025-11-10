@@ -73,6 +73,7 @@ resource "aws_security_group_rule" "rabbitmq_bastion" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
+  
   source_security_group_id = local.bastion_sg_id
   security_group_id = local.rabbitmq_sg_id
 }
@@ -130,4 +131,5 @@ resource "aws_security_group_rule" "catalogue_mongodb" {
 #   volume_id   = aws_ebs_volume.root.id
 #   instance_id = aws_instance.bastion.id
 # }
+
 

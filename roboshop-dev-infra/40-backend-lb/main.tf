@@ -8,7 +8,7 @@ resource "aws_lb" "backend_alb" {
   subnets            = split("," , data.aws_ssm_parameter.public_subnet.value)
 
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
 
 
