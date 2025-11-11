@@ -107,82 +107,82 @@ resource "aws_launch_template" "catalogue" {
 
 
 
-resource "aws_autoscaling_group" "catalogue" {
-  name = "${local.common_name}-catalogue"
-  max_size                  = 10
-  min_size                  = 1
-  health_check_grace_period = 100
-  health_check_type         = "ELB"
-  desired_capacity          = 1
-  force_delete              = false
-  target_group_arns = [aws_lb_target_group.catalogue.arn]
-  depends_on = [ aws_lb_target_group.catalogue ]
-  launch_template {
-    id = aws_launch_template.catalogue.id
-    version = aws_launch_template.catalogue.latest_version
-  }
-  vpc_zone_identifier       = local.private_subnet_id
+# resource "aws_autoscaling_group" "catalogue" {
+#   name = "${local.common_name}-catalogue"
+#   max_size                  = 10
+#   min_size                  = 1
+#   health_check_grace_period = 100
+#   health_check_type         = "ELB"
+#   desired_capacity          = 1
+#   force_delete              = false
+#   target_group_arns = [aws_lb_target_group.catalogue.arn]
+#   depends_on = [ aws_lb_target_group.catalogue ]
+#   launch_template {
+#     id = aws_launch_template.catalogue.id
+#     version = aws_launch_template.catalogue.latest_version
+#   }
+#   vpc_zone_identifier       = local.private_subnet_id
 
   
-  dynamic "tag" {
-    for_each = merge(
-      local.common_tags,
-      {
-        Name = "${local.common_name}-catalogue"
-      }
-    )
+#   dynamic "tag" {
+#     for_each = merge(
+#       local.common_tags,
+#       {
+#         Name = "${local.common_name}-catalogue"
+#       }
+#     )
   
 
-  content {
-    key                 = tag.key
-    value               = tag.value
-    propagate_at_launch = true
-  }
-  }
-
-  
+#   content {
+#     key                 = tag.key
+#     value               = tag.value
+#     propagate_at_launch = true
+#   }
+#   }
 
   
 
+  
 
-  timeouts {
-    delete = "15m"
-  }
+
+#   timeouts {
+#     delete = "15m"
+#   }
   
   
-}
+# }
 
 
-resource "aws_autoscaling_policy" "catalogue" {
-  autoscaling_group_name = aws_autoscaling_group.catalogue.name
-  name = "${local.common_name}-catalogue"
-  policy_type = "TargetTrackingScaling"
+# resource "aws_autoscaling_policy" "catalogue" {
+#   autoscaling_group_name = aws_autoscaling_group.catalogue.name
+#   name = "${local.common_name}-catalogue"
+#   policy_type = "TargetTrackingScaling"
 
-  target_tracking_configuration {
-    predefined_metric_specification {
-      predefined_metric_type = "ASGAverageCPUUtilization"
-    }
-    target_value = 75.0
+#   target_tracking_configuration {
+#     predefined_metric_specification {
+#       predefined_metric_type = "ASGAverageCPUUtilization"
+#     }
+#     target_value = 75.0
     
-  }
- }
+#   }
+#  }
 
 
-resource "aws_lb_listener_rule" "catalogue" {
-  listener_arn = local.backend_alb_listener_arn
-  priority     = 10
+# resource "aws_lb_listener_rule" "catalogue" {
+#   listener_arn = local.backend_alb_listener_arn
+#   priority     = 10
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.catalogue.arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.catalogue.arn
+#   }
 
-  condition {
-    host_header {
-      values = ["catalogue.backend_alb-${var.environment_name}.${var.domain}"]
-    }
-  }
-}
+#   condition {
+#     host_header {
+#       values = ["catalogue.backend_alb-${var.environment_name}.${var.domain}"]
+#     }
+#   }
+# }
 
 
 
