@@ -1,13 +1,13 @@
-# resource "aws_security_group_rule" "backend_alb_bastion" {
-#   type              = "ingress"
-#   from_port         = 80
-#   to_port           = 80
-#   protocol          = "tcp"
-#   source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
+resource "aws_security_group_rule" "backend_alb_bastion" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  source_security_group_id = local.bastion_sg_id
 
 
-#   security_group_id = data.aws_ssm_parameter.backend_alb.value
-# }
+  security_group_id = local.backend_alb_sg_id
+}
 
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
@@ -119,6 +119,17 @@ resource "aws_security_group_rule" "catalogue_mongodb" {
   source_security_group_id = local.catalogue_sg_id
   security_group_id = local.mongodb_sg_id
 }
+resource "aws_security_group_rule" "catalogue_backend_alb" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  source_security_group_id = local.backend_alb_sg_id
+  security_group_id = local.catalogue_sg_id
+}
+
+
+
 
 
 
