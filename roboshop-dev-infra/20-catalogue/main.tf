@@ -96,7 +96,7 @@ resource "aws_launch_template" "catalogue" {
   vpc_security_group_ids = local.catalogue_sg_id
  tag_specifications {
    resource_type = "instance"
- }
+ 
 
  tags = merge(
   local.common_tags,
@@ -104,6 +104,7 @@ resource "aws_launch_template" "catalogue" {
     Name = local.common_name
   }
  ) 
+ }
   tag_specifications {
    resource_type = "volume"
   tags = merge(
