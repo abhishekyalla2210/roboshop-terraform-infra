@@ -39,19 +39,6 @@ resource "terraform_data" "catalogue" {
 
   
 
-resource "aws_route53_record" "catalogue" {
-  
-
-  zone_id = "Z01730921MDPIK694OSXC"
-
-  name    = "catalogue-${var.environment_name}.${var.domain}"
-  type    = "A"
-  ttl     = 1
-  records = [aws_instance.catalogue.private_ip]
-  allow_overwrite = true
-}
-
-
 
 
 resource "aws_ec2_instance_state" "catalogue" {

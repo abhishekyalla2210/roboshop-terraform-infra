@@ -31,7 +31,7 @@ resource "aws_lb_listener" "backend_alb" {
 }
 resource "aws_route53_record" "backend_alb" {
   zone_id = "Z01730921MDPIK694OSXC" # Reference your Route 53 hosted zone
-  name    = "*.backend_alb-${var.environment_name}.${var.domain_name}"                  # The subdomain you want to use
+  name    = "*.backend-alb-${var.environment_name}.${var.domain_name}"                  # The subdomain you want to use
   type    = "A"
 
   alias {
