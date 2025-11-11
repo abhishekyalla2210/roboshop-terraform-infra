@@ -71,7 +71,7 @@ resource "aws_lb_target_group" "catalogue" {
   name     = "${local.common_name}-catalogue"
   port     = 8080
   protocol = "HTTP"
-  vpc_id   =  data.aws_ssm_parameter.vpc_id
+  vpc_id   =  data.aws_ssm_parameter.vpc_id.value
   deregistration_delay = 60
     
      health_check {
@@ -175,9 +175,11 @@ resource "aws_autoscaling_policy" "catalogue" {
     target_value = 75.0
     
   }
-
-  
 }
+
+
+
+
 
 
 

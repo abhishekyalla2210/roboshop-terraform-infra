@@ -30,3 +30,14 @@ resource "aws_lb_listener" "backend_alb" {
     }
   }
 }
+resource "aws_route53_record" "backend_alb" {
+  zone_id = "Z01730921MDPIK694OSXC" # Reference your Route 53 hosted zone
+  name    = "*.backend_alb-${var.environment_name}.${var.domain_name}"                  # The subdomain you want to use
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.backend_alb.dns_name
+    zone_id                = aws_lb.backend_alb.zone_id
+    evaluate_target_health = true # Optional: Evaluate ALB health for Route 53 health checks
+  }
+}

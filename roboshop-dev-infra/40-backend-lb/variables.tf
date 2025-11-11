@@ -4,7 +4,7 @@ variable "project_name" {
   
 }
 
-variable "environment" {
+variable "environment_name" {
     type = string
     default = "dev"
   
@@ -20,4 +20,10 @@ variable "sg_names" {
         "frontend-alb",
         "backend-alb"
     ]
+}
+
+variable "domain_name" {
+    type = string
+    default = "abhishekdev.fun"
+  
 }
