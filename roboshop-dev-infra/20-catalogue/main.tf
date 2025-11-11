@@ -109,7 +109,7 @@ resource "aws_launch_template" "catalogue" {
   tags = merge(
   local.common_tags,
   {
-    Name = local.common_name
+    Name = "${local.common_name}-catalogue"
   }
  ) 
   
