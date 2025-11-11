@@ -11,6 +11,9 @@ resource "aws_instance" "bastion" {
     }
 
     user_data = file("bastion.sh")
+    tags = {
+        Name = "bastion"
+    }
     
    
 }
@@ -18,6 +21,6 @@ resource "aws_instance" "bastion" {
 
 
 resource "aws_iam_instance_profile" "bastion" {
-  name = "bastion"
-  role = "BastionTerraformAdmin"
+  name = "bastions"
+  role = "bastion-aws-access"
 }

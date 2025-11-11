@@ -8,7 +8,7 @@ locals {
  mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value
  catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value
 backend_alb_sg_id = data.aws_ssm_parameter.backend_alb.value
-public_subnet_id = data.aws_ssm_parameter.public_subnet_id
+public_subnet_id = split("," , data.aws_ssm_parameter.public_subnet_ids.value)[0]
 
 
 }

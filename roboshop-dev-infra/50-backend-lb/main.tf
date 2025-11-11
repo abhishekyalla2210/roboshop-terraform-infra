@@ -4,7 +4,7 @@ resource "aws_lb" "backend_alb" {
   name               = "${local.common_name_suffix}-backend-alb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [local.sg_name]
+  security_groups    = [local.backend_alb_sg_name]
   subnets            = local.private_subnet
 
   enable_deletion_protection = false

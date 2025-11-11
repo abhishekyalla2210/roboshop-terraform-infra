@@ -11,11 +11,4 @@ echo "Welcome Abhishek"
 
 sudo dnf install ansible -y
 
- creating databases
-cd /home/ec2-user
-git clone 
-
-chown ec2-user:ec2-user -R roboshop-dev-infra
-cd roboshop-dev-infra/40-databases
-terraform init
-terraform apply -auto-approve
+ 

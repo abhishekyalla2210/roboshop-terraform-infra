@@ -12,7 +12,7 @@ data "aws_ssm_parameter" "backend_alb" {
   name = "/${var.project_name}-${var.environment}/backend-alb"
 }
 
-data "aws_ssm_parameter" "public_subnet_id" {
+data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/${local.common_name_suffix}/public_subnet_ids"
   }
 
