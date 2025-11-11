@@ -63,6 +63,7 @@ resource "aws_lb_target_group" "catalogue" {
     
      health_check {
     path                = "/health"
+    port = 8080
     protocol            = "HTTP"
     matcher             = "200-299"
     interval            = 10
