@@ -41,19 +41,3 @@ resource "aws_route53_record" "backend_alb" {
   }
 }
 
-resource "aws_lb_listener_rule" "catalogue" {
-  listener_arn = aws_lb_listener.backend_alb.arn
-  priority     = 10
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.catalogue.arn
-  }
-
-  condition {
-    host_header {
-      values = ["catalogue.backend-alb-${var.environment_name}.${var.domain_name}"]
-    }
-  }
-}
-
