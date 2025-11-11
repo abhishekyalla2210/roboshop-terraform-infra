@@ -41,3 +41,4 @@ resource "aws_route53_record" "backend_alb" {
     evaluate_target_health = true # Optional: Evaluate ALB health for Route 53 health checks
   }
 }
+
