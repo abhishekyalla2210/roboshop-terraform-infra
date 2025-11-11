@@ -126,7 +126,7 @@ resource "aws_autoscaling_group" "catalogue" {
   health_check_type         = "ELB"
   desired_capacity          = 1
   force_delete              = false
-  target_group_arns = aws_lb_target_group.catalogue.arn
+  target_group_arns = [aws_lb_target_group.catalogue.arn]
   depends_on = [ aws_lb_target_group.catalogue ]
   launch_template {
     id = aws_launch_template.catalogue.id
