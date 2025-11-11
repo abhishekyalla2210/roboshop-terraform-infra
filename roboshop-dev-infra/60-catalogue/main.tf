@@ -3,7 +3,7 @@ resource "aws_instance" "catalogue" {
     ami = var.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
-    vpc_security_group_ids = local.catalogue_sg_id
+    vpc_security_group_ids = [local.catalogue_sg_id]
      tags = merge(
         local.common_tags,
         {
@@ -81,7 +81,8 @@ resource "aws_launch_template" "catalogue" {
   instance_initiated_shutdown_behavior = "terminate"
   image_id = aws_ami_from_instance.catalogue.id
   instance_type = "t3.micro"
-  vpc_security_group_ids = local.catalogue_sg_id
+  vpc_security_group_ids = [local.catalogue_sg_id]
+  update_default_version = true
  tag_specifications {
    resource_type = "instance"
  
@@ -111,7 +112,7 @@ resource "aws_autoscaling_group" "catalogue" {
   name = "${local.common_name}-catalogue"
   max_size                  = 10
   min_size                  = 1
-  health_check_grace_period = 100
+  health_check_grace_period = 300
   health_check_type         = "ELB"
   desired_capacity          = 1
   force_delete              = false
