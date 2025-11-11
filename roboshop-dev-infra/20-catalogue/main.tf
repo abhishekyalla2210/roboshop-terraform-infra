@@ -116,10 +116,7 @@ resource "aws_launch_template" "catalogue" {
   }
 }
 
-resource "aws_placement_group" "test" {
-  name     = "test"
-  strategy = "cluster"
-}
+
 
 resource "aws_autoscaling_group" "catalogue" {
   name = "${local.common_name}-dev-catalogue"
