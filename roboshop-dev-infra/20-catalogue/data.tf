@@ -21,3 +21,7 @@ data "aws_ssm_parameter" "vpc_id" {
   name = "/${local.common_name}/vpc_id"
   }
 
+data "aws_ssm_parameter" "backend_alb_listener_arn" {
+  name = "/${local.common_name}/backend_alb_listener_arn"
+  }
+

@@ -3,6 +3,7 @@ locals {
      common_name = "${var.project_name}-${var.environment_name}"
   subnet_id = split("," , data.aws_ssm_parameter.private_subnet_ids.value)[0]
   private_subnet_id = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
+backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
 }
 
 
@@ -12,6 +13,6 @@ locals {
     Environment = var.environment_name
     terraform = true
   }
-  
+
 
 }
