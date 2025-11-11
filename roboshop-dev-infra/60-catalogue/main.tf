@@ -108,7 +108,7 @@ resource "aws_launch_template" "catalogue" {
 
 
 # resource "aws_autoscaling_group" "catalogue" {
-#   name = "${local.common_name}-dev-catalogue"
+#   name = "${local.common_name}-catalogue"
 #   max_size                  = 10
 #   min_size                  = 1
 #   health_check_grace_period = 100
@@ -165,24 +165,24 @@ resource "aws_launch_template" "catalogue" {
 #     target_value = 75.0
     
 #   }
+# # }
+
+
+# resource "aws_lb_listener_rule" "catalogue" {
+#   listener_arn = local.backend_alb_listener_arn
+#   priority     = 10
+
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.catalogue.arn
+#   }
+
+#   condition {
+#     host_header {
+#       values = ["catalogue.backend_alb-${var.environment_name}.${var.domain}"]
+#     }
+#   }
 # }
-
-
-resource "aws_lb_listener_rule" "catalogue" {
-  listener_arn = local.backend_alb_listener_arn
-  priority     = 10
-
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.catalogue.arn
-  }
-
-  condition {
-    host_header {
-      values = ["catalogue.backend_alb-${var.environment_name}.${var.domain}"]
-    }
-  }
-}
 
 
 
