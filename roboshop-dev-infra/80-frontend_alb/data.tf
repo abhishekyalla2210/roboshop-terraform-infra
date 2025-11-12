@@ -1,15 +1,10 @@
-data "aws_ssm_parameter" "backend_alb_sg_ids" {
-  name = "/${local.common_name_suffix}/backend_alb"
-}
 
 data "aws_ssm_parameter" "public_subnet" {
   name = "/${local.common_name_suffix}/public_subnet_ids"
 }
 
 
-data "aws_ssm_parameter" "private_subnet" {
-  name = "/${local.common_name_suffix}/private_subnet_ids"
-}
+
 
 resource "aws_ssm_parameter" "frontend_arn" {
   name  = "/${var.project_name}-${var.environment_name}/frontend_alb_arn"
