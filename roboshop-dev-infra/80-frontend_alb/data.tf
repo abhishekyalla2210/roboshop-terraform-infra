@@ -6,20 +6,15 @@ data "aws_ssm_parameter" "public_subnet" {
   name = "/${local.common_name_suffix}/public_subnet_ids"
 }
 
-resource "aws_ssm_parameter" "backend_alb_listener_arn" {
-  name  = "/${var.project_name}-${var.environment_name}/backend_alb_listener_arn"
-  type  = "String"
-  value = aws_lb_listener.backend_alb.arn
-}
 
 data "aws_ssm_parameter" "private_subnet" {
   name = "/${local.common_name_suffix}/private_subnet_ids"
 }
 
-resource "aws_ssm_parameter" "certificate_arn" {
+resource "aws_ssm_parameter" "frontend_arn" {
   name  = "/${var.project_name}-${var.environment_name}/roboshop_arn"
   type  = "String"
-  value = aws_lb_listener.backend_alb.arn
+  value = aws_lb_listener.frontend_alb.arn
 }
 
 data "aws_ssm_parameter" "frontend_alb_sg_ids" {
