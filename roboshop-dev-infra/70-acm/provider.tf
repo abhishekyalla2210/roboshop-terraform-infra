@@ -8,7 +8,7 @@ terraform {
 
    backend "s3" {
     bucket = "remote-state-devsecops"
-    key    = "remote-state-backend"
+    key    = "remote-state-acm"
     region = "us-east-1"
     use_lockfile = false
     encrypt = true
