@@ -27,3 +27,7 @@ variable "domain_name" {
     default = "abhishekdev.fun"
   
 }
+
+variable "zone_id"{
+    default = "Z01730921MDPIK694OSXC"
+}

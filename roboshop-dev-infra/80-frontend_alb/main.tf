@@ -29,14 +29,14 @@ resource "aws_lb_listener" "frontend_alb" {
 }
 
 
-# resource "aws_route53_record" "frontend_alb" {
-#   zone_id = "Z01730921MDPIK694OSXC" # Reference your Route 53 hosted zone
-#   name    = "*.backend-alb-${var.environment_name}.${var.domain_name}"                  # The subdomain you want to use
-#   type    = "A"
+resource "aws_route53_record" "frontend_alb" {
+  zone_id = var.zone_id# Reference your Route 53 hosted zone
+  name    = "roboshop-${var.environment_name}.${var.domain_name}-frontend-alb"                  # The subdomain you want to use
+  type    = "A"
 
-#   alias {
-#     name                   = aws_lb.backend_alb.dns_name
-#     zone_id                = aws_lb.backend_alb.zone_id
-#     evaluate_target_health = true # Optional: Evaluate ALB health for Route 53 health checks
-#   }
-# }
+  alias {
+    name                   = aws_lb.frontend_alb.dns_name
+    zone_id                = aws_lb.frontend_alb.zone_id
+    evaluate_target_health = true # Optional: Evaluate ALB health for Route 53 health checks
+  }
+}
