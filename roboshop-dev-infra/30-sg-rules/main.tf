@@ -7,8 +7,6 @@ resource "aws_security_group_rule" "backend_alb_bastion" {
   protocol          = "tcp"
   to_port           = 80
 }
-
-
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
   security_group_id = local.bastion_sg_id

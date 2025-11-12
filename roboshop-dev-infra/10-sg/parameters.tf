@@ -1,7 +1,6 @@
-resource "aws_ssm_parameter" "sg_ids" {
-    count = length(var.sg_names)
-  name  = "/${local.common_name_suffix}/${var.sg_names[count.index]}"
+resource "aws_ssm_parameter" "sg_id" {
+  count = length(var.sg_names)
+  name  = "/${var.project_name}-${var.environment}/${var.sg_names[count.index]}" # /roboshop/dev/catalogue_sg_id
   type  = "String"
-  value = aws_security_group.sg[count.index].id
+  value = module.sg[count.index].sg_id
 }
-

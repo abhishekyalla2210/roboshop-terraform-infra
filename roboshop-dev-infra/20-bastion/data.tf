@@ -9,7 +9,7 @@ data "aws_ssm_parameter" "bastion_sg_id" {
 
 
 data "aws_ssm_parameter" "backend_alb" {
-  name = "/${var.project_name}-${var.environment}/backend-alb"
+  name = "/${var.project_name}-${var.environment}/backend_alb"
 }
 
 data "aws_ssm_parameter" "public_subnet_ids" {
