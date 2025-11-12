@@ -18,8 +18,13 @@ resource "aws_lb_listener" "frontend_alb" {
   certificate_arn   = local.certificate_arn # Reference to your ACM certificate
 
   default_action {
-    type             = "forward"
-    target_group_arn = local # Reference to your target group
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+
+      message_body = "from frontend bro"
+      status_code = 200
+    }
   }
 }
 
