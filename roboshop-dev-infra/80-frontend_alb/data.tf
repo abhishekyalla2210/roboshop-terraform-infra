@@ -1,4 +1,4 @@
-data "aws_ssm_parameter" "sg_ids" {
+data "aws_ssm_parameter" "backend_alb_sg_ids" {
   name = "/${local.common_name_suffix}/backend_alb"
 }
 
@@ -21,10 +21,7 @@ data "aws_ssm_parameter" "certificate_arn" {
   name = "/${local.common_name_suffix}/roboshop_arn"
 }
 
-
-data "aws_ssm_parameter" "frontend_arn" {
-
-  name = "/${local.common_name_suffix}/frontend_alb_listener_arn"
+data "aws_ssm_parameter" "frontend_alb_sg_ids" {
+  name = "/${local.common_name_suffix}/frontend_alb"
 }
-
 
