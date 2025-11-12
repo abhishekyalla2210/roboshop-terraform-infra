@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "sg_ids" {
-  name = "/${local.common_name_suffix}/backend-alb"
+  name = "/${local.common_name_suffix}/backend_alb"
 }
 
 data "aws_ssm_parameter" "public_subnet" {
