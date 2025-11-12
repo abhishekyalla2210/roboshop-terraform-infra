@@ -15,7 +15,7 @@ resource "aws_lb_listener" "frontend_alb" {
   load_balancer_arn = aws_lb.frontend_alb.arn # Reference to your ALB resource
   port              = 443
   protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate.frontend.arn # Reference to your ACM certificate
+  certificate_arn   = local.frontend_alb_listener_arn # Reference to your ACM certificate
 
   default_action {
     type             = "forward"
