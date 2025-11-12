@@ -31,7 +31,7 @@ resource "aws_lb_listener" "frontend_alb" {
 
 resource "aws_route53_record" "frontend_alb" {
   zone_id = var.zone_id# Reference your Route 53 hosted zone
-  name    = "roboshop-${var.environment_name}.${var.domain_name}-frontend-alb"                  # The subdomain you want to use
+  name    = "roboshop-${var.environment_name}.${var.domain_name}"                  # The subdomain you want to use
   type    = "A"
 
   alias {
