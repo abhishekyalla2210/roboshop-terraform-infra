@@ -16,10 +16,6 @@ data "aws_ssm_parameter" "private_subnet" {
   name = "/${local.common_name_suffix}/private_subnet_ids"
 }
 
-data "aws_ssm_parameter" "public_subnet" {
-  name = "/${local.common_name_suffix}/public_subnet_ids"
-}
-
 resource "aws_ssm_parameter" "frontend_alb_listener_arn" {
   name  = "/${var.project_name}-${var.environment_name}/frontend_alb_listener_arn"
   type  = "String"
