@@ -16,8 +16,8 @@ data "aws_ssm_parameter" "private_subnet" {
   name = "/${local.common_name_suffix}/private_subnet_ids"
 }
 
-resource "aws_ssm_parameter" "frontend_alb_listener_arn" {
-  name  = "/${var.project_name}-${var.environment_name}/frontend_alb_listener_arn"
+resource "aws_ssm_parameter" "certificate_arn" {
+  name  = "/${var.project_name}-${var.environment_name}/roboshop_arn"
   type  = "String"
   value = aws_lb_listener.backend_alb.arn
 }

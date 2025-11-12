@@ -15,11 +15,11 @@ resource "aws_lb_listener" "frontend_alb" {
   load_balancer_arn = aws_lb.frontend_alb.arn # Reference to your ALB resource
   port              = 443
   protocol          = "HTTPS"
-  certificate_arn   = local.frontend_alb_listener_arn # Reference to your ACM certificate
+  certificate_arn   = local.certificate_arn # Reference to your ACM certificate
 
   default_action {
     type             = "forward"
-    target_group_arn = local.frontend_alb_listener_arn # Reference to your target group
+    target_group_arn = local # Reference to your target group
   }
 }
 
