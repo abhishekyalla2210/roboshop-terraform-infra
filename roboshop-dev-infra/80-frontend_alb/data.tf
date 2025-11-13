@@ -7,7 +7,7 @@ data "aws_ssm_parameter" "public_subnet" {
 
 
 resource "aws_ssm_parameter" "frontend_arn" {
-  name  = "/${var.project_name}-${var.environment_name}/frontend_alb_arn"
+  name  = "/${var.project_name}-${var.environment_name}/frontend_alb_listener_arn"
   type  = "String"
   value = aws_lb_listener.frontend_alb.arn
 }
