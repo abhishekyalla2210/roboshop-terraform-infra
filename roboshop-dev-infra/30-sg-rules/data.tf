@@ -48,14 +48,34 @@ data "aws_availability_zones" "available" {
  
 
 
+ data "aws_ssm_parameter" "cart_sg_id" {
+  name = "/${local.common_name_suffix}/cart"
+  }
+
+
+ data "aws_ssm_parameter" "shipping_sg_id" {
+  name = "/${local.common_name_suffix}/shipping"
+  }
+
+
+ data "aws_ssm_parameter" "payment_sg_id" {
+  name = "/${local.common_name_suffix}/payment"
+  }
+
+
+ data "aws_ssm_parameter" "user_sg_id" {
+  name = "/${local.common_name_suffix}/user"
+  }
+
+
  data "aws_ssm_parameter" "frontend_alb" {
   name = "/${local.common_name_suffix}/frontend_alb"
   }
 
-
-
-
- 
+data "aws_ssm_parameter" "frontend_sg_id" {
+  name = "/${local.common_name_suffix}/frontend"
+  }
+  
 
 
 
