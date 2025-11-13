@@ -68,7 +68,7 @@ data "aws_availability_zones" "available" {
   }
 
 
- data "aws_ssm_parameter" "frontend_alb" {
+ data "aws_ssm_parameter" "frontend_alb_sg_id" {
   name = "/${local.common_name_suffix}/frontend_alb"
   }
 
