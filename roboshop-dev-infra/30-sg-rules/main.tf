@@ -218,9 +218,9 @@ resource "aws_security_group_rule" "catalogue_mongodb" {
   type              = "ingress"
   security_group_id = local.mongodb_sg_id
   source_security_group_id = local.catalogue_sg_id
-  from_port         = 27107
+  from_port         = 27017
   protocol          = "tcp"
-  to_port           = 27107
+  to_port           = 27017
 }
 
 
@@ -272,9 +272,9 @@ resource "aws_security_group_rule" "frontend_alb_frontend" {
   type              = "ingress"
   security_group_id = local.frontend_sg_id
   source_security_group_id = local.frontend_alb_sg_id
-  from_port         = 8080
+  from_port         = 80
   protocol          = "tcp"
-  to_port           = 8080
+  to_port           = 80
 }
 
 

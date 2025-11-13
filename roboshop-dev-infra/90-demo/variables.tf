@@ -30,7 +30,7 @@ variable "priority" {
             priority = 50
         }
         frontend = {
-            priority = 10
+            priority = 60
         }
     }
 }
