@@ -3,7 +3,7 @@ module "main"{
     ami_id = var.ami_id
     for_each = var.components
     component = each.key
-    priority = each.value.priority
+    rule_priority = each.value.priority
     domain_name = var.domain_name
 }
 
