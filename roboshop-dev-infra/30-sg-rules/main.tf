@@ -282,13 +282,54 @@ resource "aws_security_group_rule" "frontend_alb_public" {
 }
 
 ##### Bastion SG Rules #####
-resource "aws_security_group_rule" "bastion_laptop" {
+resource "aws_security_group_rule" "catalogeall" {
   type              = "ingress"
-  security_group_id = local.bastion_sg_id
+  security_group_id = local.catalogue_sg_id
   cidr_blocks = ["0.0.0.0/0"]
-  from_port         = 22
+  from_port         = 0
   protocol          = "tcp"
-  to_port           = 22
+  to_port           = 0
+}
+
+resource "aws_security_group_rule" "catalogeall" {
+  type              = "ingress"
+  security_group_id = local.cart_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 0
+  protocol          = "tcp"
+  to_port           = 0
+}
+resource "aws_security_group_rule" "catalogeall" {
+  type              = "ingress"
+  security_group_id = local.payment_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 0
+  protocol          = "tcp"
+  to_port           = 0
+}
+resource "aws_security_group_rule" "catalogeall" {
+  type              = "ingress"
+  security_group_id = local.shipping_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 0
+  protocol          = "tcp"
+  to_port           = 0
+}
+resource "aws_security_group_rule" "catalogeall" {
+  type              = "ingress"
+  security_group_id = local.user_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 0
+  protocol          = "tcp"
+  to_port           = 0
+}
+resource "aws_security_group_rule" "catalogeall" {
+  type              = "ingress"
+  security_group_id = local.mongodb_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 0
+  protocol          = "tcp"
+  to_port           = 0
 }
 
 #This is the mistake we did, cart can't access components directly from one component to another component. they should be communicated through backend ALB
