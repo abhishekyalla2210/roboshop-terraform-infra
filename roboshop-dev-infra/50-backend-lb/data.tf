@@ -1,4 +1,4 @@
-data "aws_ssm_parameter" "sg_ids" {
+data "aws_ssm_parameter" "backend_alb_sg_ids" {
   name = "/${local.common_name_suffix}/backend_alb"
 }
 
