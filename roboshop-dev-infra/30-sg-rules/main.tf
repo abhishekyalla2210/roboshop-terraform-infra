@@ -208,6 +208,7 @@ resource "aws_security_group_rule" "backend_alb_shipping" {
   to_port           = 80
 }
 
+
 resource "aws_security_group_rule" "backend_alb_payment" {
   type              = "ingress"
   security_group_id = local.backend_alb_sg_id
