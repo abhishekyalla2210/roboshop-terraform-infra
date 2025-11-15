@@ -1,5 +1,5 @@
-resource "aws_ssm_parameter" "roboshop_arn" {
-    name = "/${var.project_name}-${var.environment}/roboshop_arn"
+resource "aws_ssm_parameter" "frontend_alb_certificte" {
+    name = "/${var.project_name}-${var.environment}/frontend_alb_certificate_arn"
     type = "String"
     value = aws_acm_certificate.roboshop.arn
 }

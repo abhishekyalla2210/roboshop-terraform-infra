@@ -1,5 +1,5 @@
 resource "aws_instance" "mongodb" {
-    ami = var.ami_id
+    ami = local.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = local.mongodb_sg_id
@@ -52,7 +52,7 @@ resource "terraform_data" "mongodb" {
 
 
 resource "aws_instance" "redis" {
-    ami = var.ami_id
+    ami = local.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = local.redis_sg_id
@@ -103,7 +103,7 @@ resource "terraform_data" "redis" {
 
     
 resource "aws_instance" "rabbitmq" {
-    ami = var.ami_id
+    ami = local.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = local.rabbitmq_sg_id
@@ -156,7 +156,7 @@ resource "terraform_data" "rabbitmq" {
     
    
 resource "aws_instance" "mysql" {
-    ami = var.ami_id
+    ami = local.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = local.mysql_sg_id

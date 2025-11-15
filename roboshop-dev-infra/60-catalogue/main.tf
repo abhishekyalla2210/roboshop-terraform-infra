@@ -1,6 +1,6 @@
   
 resource "aws_instance" "catalogue" {
-    ami = var.ami_id
+    ami = local.ami_id
     subnet_id   = local.subnet_id
     instance_type = var.instance_type
     vpc_security_group_ids = [local.catalogue_sg_id]
@@ -112,7 +112,7 @@ resource "aws_autoscaling_group" "catalogue" {
   name = "${local.common_name}-catalogue"
   max_size                  = 10
   min_size                  = 1
-  health_check_grace_period = 300
+  health_check_grace_period = 100
   health_check_type         = "ELB"
   desired_capacity          = 1
   force_delete              = false

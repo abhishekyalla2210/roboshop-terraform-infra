@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion" {
-    ami = var.ami_id
+    ami = local.ami_id
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.bastion_sg_id]
     subnet_id = local.public_subnet_id
@@ -21,7 +21,7 @@ resource "aws_instance" "bastion" {
 
 
 resource "aws_iam_instance_profile" "bastion" {
-  name = "bastions"
+  name = "bastion"
  
   role = "bastion-aws-access"
 }

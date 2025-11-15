@@ -41,6 +41,16 @@ data "aws_availability_zones" "available" {
   name = "/${local.common_name_suffix}/catalogue"
   }
 
+  data "aws_ami" "ami_id" {
+  most_recent = true
+  owners      = ["112108975903"]  # because it’s your AMI
+  filter {
+    name   = "name"
+    values = ["RHEL-9-DevOps-Practice"]
+  }
+}
+
+
 
 
 

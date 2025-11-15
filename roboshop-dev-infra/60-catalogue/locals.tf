@@ -5,6 +5,7 @@ locals {
   private_subnet_ids = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
 backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
 vpc_id = data.aws_ssm_parameter.vpc_id.value
+ami_id = data.aws_ami.ami_id.id
 }
 
 

@@ -14,10 +14,6 @@ variable "instance_type" {
   
 }
 
-variable "ami_id" {
-    default = "ami-09c813fb71547fc4f"
-  
-}
 
 
 variable "route_names" {
