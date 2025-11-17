@@ -271,3 +271,55 @@ resource "aws_security_group_rule" "bastion_laptop" {
   protocol          = "tcp"
   to_port           = 22
 }
+
+
+resource "aws_security_group_rule" "openvpn_internet" {
+  type              = "ingress"
+  security_group_id = local.openvpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
+
+resource "aws_security_group_rule" "openvpn_943" {
+  type              = "ingress"
+  security_group_id = local.openvpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 943
+  protocol          = "tcp"
+  to_port           = 943
+}
+
+
+resource "aws_security_group_rule" "openvpn_44" {
+  type              = "ingress"
+  security_group_id = local.openvpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 443
+  protocol          = "tcp"
+  to_port           = 443
+}
+
+
+resource "aws_security_group_rule" "openvpn_1194" {
+  type              = "ingress"
+  security_group_id = local.openvpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 1194
+  protocol          = "tcp"
+  to_port           = 1194
+}
+
+
+
+
+
+resource "aws_security_group_rule" "catalogue_vpn" {
+  type              = "ingress"
+  security_group_id = local.catalogue_sg_id
+  source_security_group_id = local.openvpn_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}

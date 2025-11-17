@@ -41,6 +41,13 @@ data "aws_availability_zones" "available" {
   name = "/${local.common_name_suffix}/catalogue"
   }
 
+  
+ data "aws_ssm_parameter" "openvpn_internet" {
+  name = "/${local.common_name_suffix}/openvpn"
+  }
+
+   
+
 
 
 
